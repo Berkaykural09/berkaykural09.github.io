@@ -4,31 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Berkay Kural</title>
-  <meta name="description" content="Berkay Kural - Teknoloji, Gezi ve Dijital İçerik Üreticisi" />
   <style>
-    :root {
-      --color-bg-light: #f9f9f9;
-      --color-bg-dark: #121212;
-      --color-text-light: #222;
-      --color-text-dark: #eee;
-      --color-primary: #00bfff;
-      --transition: 0.3s ease;
-    }
     body {
-      margin: 0;
+      background-color: #121212;
+      color: white;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: var(--color-bg-dark);
-      color: var(--color-text-dark);
-      transition: background-color var(--transition), color var(--transition);
-    }
-    body.light {
-      background-color: var(--color-bg-light);
-      color: var(--color-text-light);
+      margin: 0; padding: 0; line-height: 1.6;
+      scroll-behavior: smooth;
     }
     a {
-      color: var(--color-primary);
+      color: #00bfff;
       text-decoration: none;
-      transition: color var(--transition);
     }
     a:hover {
       text-decoration: underline;
@@ -37,35 +23,63 @@
       padding: 40px 20px 20px;
       text-align: center;
       position: relative;
+      overflow: hidden;
     }
     header h1 {
       margin: 0 0 10px;
+      font-size: 2.2rem;
+      animation: slideInFromLeft 1s ease forwards;
     }
     header p {
       margin: 5px 0;
+      color: #ccc;
+      animation: slideInFromRight 1s ease forwards;
+      animation-delay: 0.3s;
+      opacity: 0;
+      animation-fill-mode: forwards;
+    }
+    nav {
+      background: #1a1a1a;
+      padding: 10px 0;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.7);
+    }
+    nav a {
+      margin: 0 15px;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: #00bfff;
+      text-decoration: underline;
     }
     .intro {
       max-width: 800px;
-      margin: 0 auto 40px;
+      margin: 40px auto;
       padding: 0 20px;
       font-size: 1rem;
       color: #ccc;
       text-align: center;
-      transition: color var(--transition);
-    }
-    body.light .intro {
-      color: #555;
+      animation: fadeIn 1s ease forwards;
     }
     section {
       max-width: 1000px;
-      margin: 0 auto 60px;
-      padding: 0 20px;
+      margin: 40px auto;
+      padding: 20px;
     }
     section h2 {
       text-align: center;
       margin-bottom: 30px;
       font-weight: bold;
-      font-size: 1.5rem;
+      font-size: 1.7rem;
+      color: #00bfff;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      animation: fadeInUp 1s ease forwards;
     }
     .grid {
       display: grid;
@@ -77,21 +91,14 @@
       border-radius: 10px;
       padding: 15px;
       box-shadow: 0 4px 8px rgb(0 0 0 / 0.6);
-      transition: transform var(--transition), box-shadow var(--transition);
+      transition: 0.3s ease;
       text-align: center;
-      color: #bbb;
+      cursor: default;
+      animation: fadeIn 1s ease forwards;
     }
     .card:hover {
-      transform: scale(1.03);
-      box-shadow: 0 8px 20px rgb(0 191 255 / 0.6);
-    }
-    body.light .card {
-      background: #fff;
-      color: #333;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.15);
-    }
-    body.light .card:hover {
-      box-shadow: 0 8px 20px rgba(0,191,255,0.3);
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgb(0 191 255 / 0.7);
     }
     .card img {
       width: 100%;
@@ -102,260 +109,101 @@
     }
     .card h3 {
       margin: 10px 0 6px;
-      font-size: 1.1rem;
-      color: var(--color-primary);
-    }
-    body.light .card h3 {
-      color: #007acc;
+      font-size: 1.2rem;
+      color: #00bfff;
     }
     .card p {
-      font-size: 0.9rem;
-      line-height: 1.3;
+      font-size: 0.95rem;
+      color: #bbb;
     }
-
-    /* Navbar */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      background: #222;
-      color: white;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 20px;
-      z-index: 999;
-    }
-    nav.light {
-      background: #eee;
-      color: #222;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    .nav-brand {
-      font-weight: bold;
-      font-size: 1.3rem;
-      color: var(--color-primary);
-    }
-    nav.light .nav-brand {
-      color: #007acc;
-    }
-    .nav-links {
-      display: flex;
-      gap: 20px;
-    }
-    .nav-links a {
-      color: inherit;
+    .card a {
+      display: inline-block;
+      margin-top: 8px;
       font-weight: 600;
-      transition: color var(--transition);
+      color: #00bfff;
     }
-    .nav-links a:hover {
-      color: var(--color-primary);
-    }
-    .nav-toggle {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-      gap: 4px;
-    }
-    .nav-toggle div {
-      width: 25px;
-      height: 3px;
-      background: currentColor;
-      border-radius: 2px;
-      transition: all 0.3s ease;
-    }
-
-    /* Mobile */
-    @media (max-width: 700px) {
-      .nav-links {
-        position: fixed;
-        top: 50px; right: 0;
-        background: #222;
-        height: calc(100vh - 50px);
-        width: 200px;
-        flex-direction: column;
-        padding: 20px;
-        transform: translateX(100%);
-        transition: transform 0.3s ease;
-      }
-      nav.light .nav-links {
-        background: #eee;
-      }
-      .nav-links.open {
-        transform: translateX(0);
-      }
-      .nav-toggle {
-        display: flex;
-      }
-    }
-
-    /* Theme toggle button */
-    .theme-toggle {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: var(--color-primary);
-      border: none;
-      border-radius: 50%;
-      width: 45px;
-      height: 45px;
-      color: white;
-      font-size: 20px;
-      cursor: pointer;
-      box-shadow: 0 4px 8px rgba(0,191,255,0.6);
-      transition: background-color 0.3s ease;
-      z-index: 1000;
-    }
-    .theme-toggle:hover {
-      background: #008ecc;
-    }
-
-    /* About section */
     #about p {
       max-width: 900px;
       margin: 0 auto;
-      line-height: 1.6;
+      padding: 0 20px;
       font-size: 1rem;
-      color: #ccc;
-      transition: color 0.3s ease;
+      color: #ddd;
+      line-height: 1.5;
+      animation: fadeIn 1s ease forwards;
     }
-    body.light #about p {
-      color: #555;
-    }
-
-    /* Blog accordion */
-    .accordion-item {
+    #blog .post {
       background: #1e1e1e;
-      border-radius: 8px;
-      margin-bottom: 15px;
-      padding: 10px 15px;
-      cursor: pointer;
-      color: #bbb;
-      transition: background-color 0.3s ease;
+      margin-bottom: 20px;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.7);
+      animation: fadeIn 1s ease forwards;
     }
-    body.light .accordion-item {
-      background: #fff;
-      color: #333;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    #blog .post h3 {
+      margin-top: 0;
+      color: #00bfff;
     }
-    .accordion-item:hover {
-      background: #333;
-    }
-    body.light .accordion-item:hover {
-      background: #f0f0f0;
-    }
-    .accordion-item h3 {
-      margin: 0;
-      font-size: 1.1rem;
-      color: var(--color-primary);
-    }
-    body.light .accordion-item h3 {
-      color: #007acc;
-    }
-    .accordion-content {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease;
-      padding-left: 10px;
-      margin-top: 5px;
+    #blog .post p {
+      color: #ccc;
       font-size: 0.95rem;
       line-height: 1.4;
-      color: #aaa;
     }
-    body.light .accordion-content {
-      color: #555;
-    }
-    .accordion-content.open {
-      max-height: 200px; /* enough for content */
-    }
-
-    /* Form styles */
-    form {
-      max-width: 600px;
-      margin: 0 auto;
-      background: #1e1e1e;
-      padding: 20px;
-      border-radius: 10px;
-      color: #bbb;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.6);
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-    body.light form {
-      background: #fff;
-      color: #333;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.15);
-    }
-    form label {
-      display: block;
-      margin-bottom: 6px;
-      font-weight: 600;
-      color: inherit;
-    }
-    form input, form textarea {
-      width: 100%;
-      padding: 8px 10px;
-      margin-bottom: 15px;
-      border: none;
-      border-radius: 6px;
-      font-size: 1rem;
-      font-family: inherit;
-      box-sizing: border-box;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-    body:not(.light) form input, body:not(.light) form textarea {
-      background: #333;
-      color: #ddd;
-    }
-    body.light form input, body.light form textarea {
-      background: #f0f0f0;
-      color: #222;
-    }
-    form button {
-      background: var(--color-primary);
-      color: white;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: 700;
-      font-size: 1rem;
-      transition: background-color 0.3s ease;
-    }
-    form button:hover {
-      background: #008ecc;
-    }
-    /* Footer */
     footer {
+      background: #1a1a1a;
+      color: #888;
       text-align: center;
-      padding: 30px 20px;
-      color: #777;
+      padding: 25px 15px;
+      margin-top: 50px;
       font-size: 0.9rem;
-      border-top: 1px solid #333;
-      max-width: 1000px;
-      margin: 0 auto 40px;
+      user-select: none;
     }
-    body.light footer {
-      border-top-color: #ddd;
-      color: #555;
+    footer a {
+      color: #00bfff;
+      font-weight: 600;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+    .social-icons {
+      margin-top: 15px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+    .social-icons a {
+      color: #00bfff;
+      font-size: 1.6rem;
+      transition: color 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+    }
+    .social-icons a:hover {
+      color: #0099cc;
+    }
+    .social-icons svg {
+      width: 24px;
+      height: 24px;
+      fill: currentColor;
+    }
+    @keyframes fadeIn {
+      0% {opacity: 0;}
+      100% {opacity: 1;}
+    }
+    @keyframes fadeInUp {
+      0% {opacity: 0; transform: translateY(20px);}
+      100% {opacity: 1; transform: translateY(0);}
+    }
+    @keyframes slideInFromLeft {
+      0% {opacity: 0; transform: translateX(-50px);}
+      100% {opacity: 1; transform: translateX(0);}
+    }
+    @keyframes slideInFromRight {
+      0% {opacity: 0; transform: translateX(50px);}
+      100% {opacity: 1; transform: translateX(0);}
     }
   </style>
 </head>
 <body>
-
-  <nav id="navbar">
-    <div class="nav-brand">Berkay Kural</div>
-    <div class="nav-toggle" id="navToggle" aria-label="Menüyü aç/kapat" role="button" tabindex="0">
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-    <div class="nav-links" id="navLinks">
-      <a href="#about">Hakkımda</a>
-      <a href="#projects">Projeler</a>
-      <a href="#instagram">Instagram</a>
-      <a href="#blog">Blog</a>
-      <a href="#contact">İletişim</a>
-    </div>
-  </nav>
 
   <header>
     <h1>Merhaba, ben Berkay Kural 👋</h1>
@@ -369,19 +217,27 @@
     </p>
   </header>
 
+  <nav aria-label="Ana Menü">
+    <a href="#about">Hakkımda</a>
+    <a href="#projects">Projelerim</a>
+    <a href="#insta">Instagram Sayfalarım</a>
+    <a href="#blog">Blog</a>
+    <a href="#contact">İletişim</a>
+  </nav>
+
   <div class="intro">
     <p>Teknolojiyle iç içe yaşayan, üretmeyi seven biri olarak dijital dünyada iz bırakmak için buradayım. Kod yazmaktan, projeler geliştirmekten ve içerikler üretmekten keyif alıyorum.</p>
     <p>Aynı zamanda sosyal medyada da aktifiz. 29 bin takipçili <strong>@egeyikesif</strong> ve <strong>@gezibk.ai</strong> Instagram sayfalarında Ege bölgesine ait gezilecek yerler, doğa harikaları ve keşif rotalarını paylaşıyoruz. Bölgeyi hem gezip hem de dijital içeriklerle anlatmak bizim işimiz!</p>
   </div>
 
-  <section id="about" class="section">
-    <h2>Hakkımda</h2>
+  <section id="about" class="section" aria-labelledby="about-title">
+    <h2 id="about-title">Hakkımda</h2>
     <p>
       Merhaba ben <strong>Berkay Kural</strong>! Milas ve Nazilli arasında geçen enerjik bir hayatım var.<br><br>
       Sosyal medyada içerik üretmeyi, doğayı keşfetmeyi ve teknolojiyle uğraşmayı çok seviyorum. 
       Instagram’da <strong>29.000+</strong> takipçili <a href="https://instagram.com/egeyikesif" target="_blank" rel="noopener noreferrer">@egeyikesif</a> ve 
       <a href="https://instagram.com/gezibk.ai" target="_blank" rel="noopener noreferrer">@gezibk.ai</a> sayfalarımı yönetiyorum.<br><br>
-      @egeyikesif ile Ege'nin gizli kalmış güzelliklerini tanıtırken, 
+      <strong>@egeyikesif</strong> ile Ege'nin gizli kalmış güzelliklerini tanıtırken, 
       <strong>@gezibk.ai</strong> üzerinde ise <strong>yapay zekâ destekli videolar</strong> hazırlıyorum. 
       Bu projede yapay zekâ araçlarıyla görseller, seslendirmeler ve hikâyeleştirme kullanarak özgün içerikler üretiyorum.<br><br>
       Kodlamaya, tasarıma ve dijital dünyaya olan ilgimle bu kişisel web sitesini oluşturdum. 
@@ -389,25 +245,25 @@
     </p>
   </section>
 
-  <section id="projects" class="section">
-    <h2>Projelerim</h2>
+  <section id="projects" class="section" aria-labelledby="projects-title">
+    <h2 id="projects-title">Projelerim</h2>
     <div class="grid">
-      <div class="card">
+      <div class="card" tabindex="0" role="group" aria-label="Kişisel Web Sitesi Projesi">
         <img src="https://picsum.photos/id/1011/400/250" alt="Web Tasarım Projesi" />
         <h3>Kişisel Web Sitesi</h3>
         <p>Karanlık temalı, mobil uyumlu kişisel tanıtım sayfam.</p>
       </div>
-      <div class="card">
+      <div class="card" tabindex="0" role="group" aria-label="Mobil Uygulama Taslağı">
         <img src="https://picsum.photos/id/1056/400/250" alt="Mobil App" />
         <h3>Mobil Uygulama Taslağı</h3>
         <p>Basit kullanıcı arayüzüne sahip sosyal medya takipçi analiz uygulaması.</p>
       </div>
-      <div class="card">
+      <div class="card" tabindex="0" role="group" aria-label="Logo Tasarımı">
         <img src="https://picsum.photos/id/103/400/250" alt="Logo Tasarımı" />
         <h3>Logo & Marka Tasarımı</h3>
         <p>Sosyal medya hesaplarım için modern ve sade bir logo çalışması.</p>
       </div>
-      <div class="card">
+      <div class="card" tabindex="0" role="group" aria-label="Video Edit Projesi">
         <img src="https://picsum.photos/id/1042/400/250" alt="Video Edit" />
         <h3>Video Edit Projesi</h3>
         <p>YouTube ve TikTok için hazırlanan modern montaj örneği.</p>
@@ -415,16 +271,16 @@
     </div>
   </section>
 
-  <section id="instagram" class="section">
-    <h2>Instagram Sayfalarım</h2>
+  <section id="insta" class="section" aria-labelledby="insta-title">
+    <h2 id="insta-title">Instagram Sayfalarım</h2>
     <div class="grid">
-      <div class="card">
+      <div class="card" tabindex="0" role="group" aria-label="@egeyikesif Instagram Sayfası">
         <img src="https://picsum.photos/id/1051/400/250" alt="Ege Keşif" />
         <h3>@egeyikesif</h3>
         <p>Ege'nin eşsiz koyları, tarihi yerleri ve doğal güzelliklerini tanıttığımız Instagram sayfamız.</p>
         <p><a href="https://instagram.com/egeyikesif" target="_blank" rel="noopener noreferrer">Instagram'a Git →</a></p>
       </div>
-      <div class="card">
+      <div class="card" tabindex="0" role="group" aria-label="@gezibk.ai Instagram Sayfası">
         <img src="https://picsum.photos/id/1039/400/250" alt="Gezibk.ai" />
         <h3>@gezibk.ai</h3>
         <p>Yapay zekâ destekli içeriklerle gezi önerileri sunan inovatif Instagram sayfamız.</p>
@@ -433,15 +289,42 @@
     </div>
   </section>
 
-  <section id="blog" class="section">
-    <h2>Blog</h2>
-    
-    <div class="accordion-item" tabindex="0" role="button" aria-expanded="false" aria-controls="blog1" id="blog1header">
-      <h3>Egeyikesif ile Ege'nin Keşfi</h3>
-      <div class="accordion-content" id="blog1" role="region" aria-labelledby="blog1header">
-        <p>Egeyikesif Instagram sayfamızda Ege bölgesinin saklı kalmış güzelliklerini paylaşıyoruz. Doğa yürüyüşleri, tarihi yerler ve deniz kıyısı rotalarıyla takipçilerimizi keşfe çıkarıyoruz.</p>
-      </div>
-    </div>
+  <section id="blog" class="section" aria-labelledby="blog-title">
+    <h2 id="blog-title">Blog</h2>
+    <article class="post" tabindex="0">
+      <h3>Ege'nin Saklı Koyları</h3>
+      <p>Doğal güzellikleri ve sakin koyları keşfetmek için harika rotalar<p>Doğal güzellikleri ve sakin koyları keşfetmek için harika rotalar, gezi ipuçları ve fotoğraflarla dolu blog yazısı.</p>
+    </article>
+    <article class="post" tabindex="0">
+      <h3>Yapay Zekâ ile Video İçerik Üretimi</h3>
+      <p>Yapay zekâ araçlarını kullanarak nasıl özgün video içerikler oluşturduğumu ve Instagram’da paylaştığım deneyimleri anlatan makale.</p>
+    </article>
+  </section>
 
-    <div class="accordion-item" tabindex="0" role="button" aria-expanded="false" aria-controls="blog2" id="blog2header">
-      <h3>
+  <section id="contact" class="section" aria-labelledby="contact-title">
+    <h2 id="contact-title">İletişim</h2>
+    <p>Benimle iletişime geçmek istersen aşağıdaki e-posta adresini kullanabilirsin:</p>
+    <p><a href="mailto:byefex09@gmail.com">byefex09@gmail.com</a></p>
+    <p>Ayrıca sosyal medya hesaplarım:</p>
+    <div class="social-icons" role="list">
+      <a href="https://instagram.com/berkaykural09" target="_blank" rel="noopener noreferrer" aria-label="Instagram" role="listitem" >
+        <svg viewBox="0 0 24 24"><path d="M7.75 2A5.75 5.75 0 0 0 2 7.75v8.5A5.75 5.75 0 0 0 7.75 22h8.5A5.75 5.75 0 0 0 22 16.25v-8.5A5.75 5.75 0 0 0 16.25 2h-8.5zm0 1.5h8.5A4.25 4.25 0 0 1 20.5 7.75v8.5a4.25 4.25 0 0 1-4.25 4.25h-8.5A4.25 4.25 0 0 1 3.5 16.25v-8.5A4.25 4.25 0 0 1 7.75 3.5zm4.25 3.25a4.5 4.5 0 1 0 0 9 4.5 4.5 0 0 0 0-9zm0 1.5a3 3 0 1 1 0 6 3 3 0 0 1 0-6zm4.6-.25a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0z"/></svg>
+      </a>
+      <a href="https://twitter.com/berkaykural09" target="_blank" rel="noopener noreferrer" aria-label="Twitter" role="listitem">
+        <svg viewBox="0 0 24 24"><path d="M22.46 6c-.77.35-1.6.59-2.47.7a4.28 4.28 0 0 0 1.88-2.37 8.42 8.42 0 0 1-2.7 1.03 4.22 4.22 0 0 0-7.2 3.85 12 12 0 0 1-8.7-4.41 4.22 4.22 0 0 0 1.31 5.63 4.2 4.2 0 0 1-1.91-.53v.05a4.22 4.22 0 0 0 3.38 4.14 4.23 4.23 0 0 1-1.9.07 4.22 4.22 0 0 0 3.94 2.94 8.5 8.5 0 0 1-5.27 1.82A8.48 8.48 0 0 1 2 18.13a12 12 0 0 0 6.49 1.9c7.79 0 12.06-6.45 12.06-12.05 0-.18 0-.35-.01-.53A8.54 8.54 0 0 0 22.46 6z"/></svg>
+      </a>
+      <a href="https://youtube.com/@berkaykural09" target="_blank" rel="noopener noreferrer" aria-label="YouTube" role="listitem">
+        <svg viewBox="0 0 24 24"><path d="M10 15l5.19-3L10 9v6zm12-3c0 1.1-.89 2-2 2h-2v-4h2c1.11 0 2 .9 2 2zM4 18V6c0-1.1.89-2 2-2h8l4 4v8c0 1.1-.89 2-2 2H6c-1.11 0-2-.9-2-2z"/></svg>
+      </a>
+      <a href="https://tiktok.com/@berkaykural09" target="_blank" rel="noopener noreferrer" aria-label="TikTok" role="listitem">
+        <svg viewBox="0 0 24 24"><path d="M15 3v6a3 3 0 0 1-3-3H9a5 5 0 0 0 5 5v6a7 7 0 0 1-7-7h2a5 5 0 0 0 5 5v-8z"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Berkay Kural. Tüm hakları saklıdır.</p>
+  </footer>
+
+</body>
+</html>
